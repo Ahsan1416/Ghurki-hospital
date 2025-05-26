@@ -1,233 +1,203 @@
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser, faUsers } from "@fortawesome/free-solid-svg-icons";
-import { faBed } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser, faUsers, faBed } from "@fortawesome/free-solid-svg-icons";
 import { faBuilding } from "@fortawesome/free-regular-svg-icons";
 import hospital from '../images/hospital.jpg';
-
 import { Link } from 'react-router-dom';
 
+const stats = [
+  { icon: faCircleUser, count: 1588771, label: 'Visited Patients', start: 200 },
+  { icon: faUsers, count: 1925, label: 'Ghurki Team', start: 10 },
+  { icon: faBed, count: 650, label: 'Beds', start: 10 },
+  { icon: faBuilding, count: 311, label: 'Departments', start: 10 },
+];
 
+const departments = [
+  { title: "NEPHROLOGY", desc: "Cutting-edge care by dynamic leadership..." },
+  { title: "OPHTHALMOLOGY", desc: "Led by Prof. Dr. Shafique, our pioneer department..." },
+  { title: "GASTROENTEROLOGY", desc: "Excellence in digestive health..." },
+];
 
+const highlights = [
+  { title: "CyberKnife", desc: "Pakistan's 2nd robotic radiosurgery unit." },
+  { title: "Spine Center", desc: "1st Largest Spine Center in Pakistan." },
+  { title: "Dialysis Center", desc: "Free renal care with 14-bed capacity." },
+  { title: "Musafir Khana", desc: "Comfort for patient attendants." },
+];
+
+const testimonials = [
+  {
+    name: "Uzma Jilani",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=256&h=256&q=80",
+    text: "The care I received was far more than expected. The staff was caring, highly skilled & professional. A truly comforting experience.",
+  },
+  {
+    name: "Ahmed Raza",
+    image: "https://randomuser.me/api/portraits/men/75.jpg",
+    text: "Exceptional service and staff. The environment is clean and well-managed. A big thanks to the Dialysis Center team!",
+  },
+  {
+    name: "Fatima Noor",
+    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    text: "From Musafir Khana to advanced surgery, everything was seamless. I’m grateful for the dedication of the entire hospital team.",
+  },
+];
 
 const Home = () => {
-  const { ref, inView } = useInView({//ref: Yeh ek reference hai jo tum kisi element (jaise <div ref={ref}>) ko doge. Yeh batata hai browser ko "Is element ko observe karo jab yeh screen par aaye."
-    triggerOnce: true,
-    
-  });
+  const { ref, inView } = useInView({ triggerOnce: true });
 
   return (
     <>
-    
-
-      <div className="relative w-full h-0 pb-[56.25%]">
+      {/* Hero Video */}
+      <div className="relative w-full h-0 pb-[75%] sm:pb-[56.25%] px-4 sm:px-6">
         <iframe
-          className="absolute top-0 left-0 w-full h-full pointer-events-none"
+          className="absolute top-0 left-0 w-full h-full pointer-events-none rounded-lg shadow-lg"
           src="https://www.youtube.com/embed/cvjzdrw_RyE?autoplay=1&mute=1&loop=1&playlist=cvjzdrw_RyE&controls=0&rel=0&showinfo=0"
-          title="YouTube video"
+          title="Hospital Introduction Video"
           allow="autoplay; encrypted-media"
+          loading="lazy"
           allowFullScreen
-        ></iframe>
-      </div>
-
-
-      <div className="pt-6 px-4 sm:px-6 lg:px-20">
-  <div
-    ref={ref}
-    className="py-6 flex flex-wrap items-center justify-evenly text-white text-center font-bold"
-    style={{ backgroundColor: "#A3272A" }}
-  >
-    <div className="w-full sm:w-1/2 md:w-1/4 mb-6 text-2xl sm:text-3xl">
-      <div><FontAwesomeIcon icon={faCircleUser} size="2x" className="mb-2" /></div>
-      {inView ? <CountUp start={200} end={1588771} duration={3.9} /> : null}
-      <p className="mt-2 text-base sm:text-lg">Visited Patients</p>
-    </div>
-
-    <div className="w-full sm:w-1/2 md:w-1/4 mb-6 text-2xl sm:text-3xl">
-      <div><FontAwesomeIcon icon={faUsers} size="2x" className="mb-2" /></div>
-      {inView ? <CountUp start={10} end={1925} duration={3.9} /> : null}
-      <p className="mt-2 text-base sm:text-lg">Ghurki Team</p>
-    </div>
-
-    <div className="w-full sm:w-1/2 md:w-1/4 mb-6 text-2xl sm:text-3xl">
-      <div><FontAwesomeIcon icon={faBed} size="2x" className="mb-2" /></div>
-      {inView ? <CountUp start={10} end={650} duration={3.9} /> : null}
-      <p className="mt-2 text-base sm:text-lg">Beds</p>
-    </div>
-
-    <div className="w-full sm:w-1/2 md:w-1/4 mb-6 text-2xl sm:text-3xl">
-      <div><FontAwesomeIcon icon={faBuilding} size="2x" className="mb-2" /></div>
-      {inView ? <CountUp start={10} end={311} duration={3.9} /> : null}
-      <p className="mt-2 text-base sm:text-lg">Departments</p>
-    </div>
-  </div>
-</div>
-
-      
-      
-  <div className="max-w-3xl  px-4 py-12 ml-16">
-  <h1 className="text-3xl md:text-4xl font-bold text-black">
-    Welcome to <span className="text-[#A3272A]">Ghurki Trust Teaching Hospital</span>
-  </h1>
-  <p className="mt-4 text-gray-700 leading-relaxed text-justify">
-    Millions of people in Pakistan suffer from health problems due to a lack of basic necessities.
-    In this tough time, Ghurki Trust Teaching Hospital, a humble beginning in 1997 as a small dispensary,
-    has grown into a beacon of hope over the past 26 years. From that day till date, it is not only a success story
-    but an unprecedented blessing of Allah (SWT).
-  </p>
-</div>
-<div className=" flex justify-center text-[#A3272A] items-center font-bold text-3xl">DEPARTMENTS</div>
-<section className="py-16 bg-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex flex-wrap justify-center gap-8">
-      {/* Card 1 */}
-      <div className="w-full md:w-[48%] lg:w-[30%] border rounded-lg p-6 text-center shadow-sm hover:shadow-md transition">
-        <div className="flex justify-center">
-          <div className="w-20 h-20 rounded-full bg-red-500 mb-4"></div>
-        </div>
-        <h3 className="text-lg font-bold text-gray-900 mb-2">NEPHROLOGY</h3>
-        <p className="text-gray-600 mb-4">
-          The cutting-edge Nephrology Department at Ghurki Trust Teaching Hospital is spearheaded by the dynamic leadership...
-        </p>
-        <button className="mt-2 px-4 py-2 border rounded-full text-sm font-medium text-gray-700 hover:bg-gray-100 transition">
-          Read more
-        </button>
-      </div>
-
-      {/* Card 2 */}
-      <div className="w-full md:w-[48%] lg:w-[30%] border rounded-lg p-6 text-center shadow-sm hover:shadow-md transition">
-        <div className="flex justify-center">
-          <div className="w-20 h-20 rounded-full bg-red-500 mb-4"></div>
-        </div>
-        <h3 className="text-lg font-bold text-gray-900 mb-2">OPHTHALMOLOGY</h3>
-        <p className="text-gray-600 mb-4">
-          Led by Prof. Dr. Muhammad Shafique, our Ophthalmology Department, the hospital’s pioneer, has evolved into...
-        </p>
-        <button className="mt-2 px-4 py-2 border rounded-full text-sm font-medium text-gray-700 hover:bg-gray-100 transition">
-          Read more
-        </button>
-      </div>
-
-      {/* Card 3 */}
-      <div className="w-full md:w-[48%] lg:w-[30%] border rounded-lg p-6 text-center shadow-sm hover:shadow-md transition">
-        <div className="flex justify-center">
-          <div className="w-20 h-20 rounded-full bg-red-500 mb-4"></div>
-        </div>
-        <h3 className="text-lg font-bold text-gray-900 mb-2">GASTROENTEROLOGY</h3>
-        <p className="text-gray-600 mb-4">
-          At GTTH’s Gastroenterology, Hepatology, and GI Endoscopy Division, excellence in digestive health is our mission...
-        </p>
-        <button className="mt-2 px-4 py-2 border rounded-full text-sm font-medium text-gray-700 hover:bg-gray-100 transition">
-          Read more
-        </button>
-      </div>
-    </div>
-  </div>
- <div className="flex justify-center mt-6">
-  <Link
-    to="/department"
-    className="flex justify-center items-center mt-2 px-4 py-2 border rounded-full text-sm font-medium text-gray-700 hover:bg-gray-100 transition"
-  >
-    See all Department
-  </Link>
-</div>
-</section>
- 
-
-
-  <div className="flex flex-wrap">
-    
-  <div className="w-full sm:w-1/2 md:w-1/3 bg-[#A3272A]">
-    <div className="text-white p-6">
-      Our goal at Ghurki Trust Teaching Hospital is to be more than just a free medical facility; we also want to be a source of hope for people in need. We are pleased to present CyberKnife, the second robotic radiosurgery unit in Pakistan, which will provide our patients with cutting-edge treatment.
-
-      We’ve become a leading Pakistan 1st Spine Center, offering specialized care that sets us apart. Additionally, our dedication extends to our renowned Dialysis Center, where we provide essential and advanced care to patients in need. Your donations have made the dream of Musafir Khana a reality, a comforting space for patient attendants during challenging times. It’s evidence of the caring atmosphere we work to establish.
-    </div>
-  </div>
-
-<div className="w-full sm:w-1/2 md:w-1/3 bg-gray-200">
-  <img
-    src={hospital} // Replace with the actual path of your hospital image
-    alt="Hospital"
-    className="w-full h-full object-cover rounded-lg" // Ensures the image fills the entire container
-  />
-</div>
-
-
-
-  
-  <div className="w-full sm:w-1/2 md:w-1/3 bg-[#A3272A] ">
-    
-      <div className="group text-white text-xl  p-4 bg-[#A3272A] w-fit">
-  <p className="group-hover:hidden font-bold"> 1) CyberKnife</p>
-  <p className="hidden group-hover:block">Robotic Radio Surgery Unit
-As the proud home of Pakistan's second robotic radio surgery unit, the CyberKnife, We Offer Read</p>
-</div><br />
-      <div className="group text-white text-xl font-bold p-4 bg-[#A3272A] w-fit">
-  <p className="group-hover:hidden font-bold"> 2) Spine Center</p>
-  <p className="hidden group-hover:block">Pakistan’s 1st Largest Spine Center
-Recognized as a leading orthopedic center, our focus is on giving you comprehensive Read More</p>
-</div><br />
-      <div className="group text-white text-xl font-bold p-4 bg-[#A3272A] w-fit">
-  <p className="group-hover:hidden font-bold">3) Dialysis Center</p>
-  <p className="hidden group-hover:block">Our Dialysis Center, with 14 beds, is committed to providing free dialysis services to those in need, focusing on essential renal care. Read More</p>
-</div><br />
-      <div className="group text-white text-xl font-bold p-4 bg-[#A3272A] w-fit">
-  <p className="group-hover:hidden font-bold">4) Musafir Khana</p>
-  <p className="hidden group-hover:block">We understand the importance of support for patients' attendants. Our Musafir Khana provides a comforting space during challenging times,</p>
-</div>
-  </div>
-  
-  </div>
-
-
-
-<div className="flex justify-center items-start font-bold text-4xl pt-10">PEOPLE SAY ABOUT US</div><hr className="w-40 border-t-4 border-red-600 mx-auto my-4" />
-
-<section className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8">
-  <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,var(--color-indigo-100),white)] opacity-20"></div>
-  <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl ring-1 shadow-indigo-600/10 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
-  
-  <div className="mx-auto max-w-2xl lg:max-w-4xl">
-    <h1 className="font-bold text-4xl">Uzma Jilani</h1>
-    
-    <figure className="mt-10">
-      <blockquote className="text-center text-xl/8 font-semibold text-gray-900 sm:text-2xl/9">
-        <p>
-          “The care I received was far more than what I expected. Although my stay at Ghurki Hospital was short, it was a pleasant experience in terms of accommodation, care and treatment. I found the staff caring, highly skilled & professional.”
-        </p>
-      </blockquote>
-      
-      <figcaption className="mt-10">
-        <img
-          className="mx-auto size-10 rounded-full"
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-          alt=""
         />
-        <div className="mt-4 flex items-center justify-center space-x-3 text-base">
-          <div className="font-semibold text-gray-900">Uzma Jilani</div>
-          <svg
-            viewBox="0 0 2 2"
-            width="3"
-            height="3"
-            aria-hidden="true"
-            className="fill-gray-900"
-          >
-            <circle cx="1" cy="1" r="1" />
-          </svg>
+      </div>
 
+      {/* Counter Section */}
+      <section ref={ref} className="bg-[#A3272A] text-white py-14 px-4">
+        <div className="container mx-auto flex flex-wrap justify-evenly text-center font-semibold">
+          {stats.map((item, index) => (
+            <div
+              key={index}
+              className="w-full sm:w-1/2 md:w-1/4 py-8 flex flex-col items-center hover:scale-105 transform transition duration-500 ease-in-out"
+            >
+              <FontAwesomeIcon
+                icon={item.icon}
+                size="3x"
+                className="mb-4 text-white drop-shadow-md"
+                aria-label={item.label}
+              />
+              {inView && (
+                <CountUp
+                  start={item.start}
+                  end={item.count}
+                  duration={3.5}
+                  separator=","
+                  className="text-3xl font-extrabold leading-none drop-shadow-md"
+                />
+              )}
+              <p className="mt-3 text-xl tracking-widest uppercase drop-shadow-sm">{item.label}</p>
+              <div className="w-12 h-1 bg-white mt-4 rounded-full" />
+            </div>
+          ))}
         </div>
-      </figcaption>
-    </figure>
-  </div>
-</section>
+      </section>
 
+      {/* Welcome Section */}
+      <section className="px-4 sm:px-6 py-16 bg-gray-50">
+        <div className="max-w-3xl mx-auto text-center">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black mb-4 leading-tight">
+            Welcome to <span className="text-[#A3272A]">Ghurki Trust Teaching Hospital</span>
+          </h1>
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+            Millions of people in Pakistan suffer from health problems due to a lack of basic necessities.
+            We are committed to serving with compassion, innovation, and care.
+          </p>
+        </div>
+      </section>
 
+      {/* Departments Section */}
+      <section className="bg-white py-16 px-4">
+        <h2 className="text-center text-3xl sm:text-4xl font-bold text-[#A3272A] mb-12">Departments</h2>
+        <div className="container mx-auto flex flex-wrap justify-center gap-8">
+          {departments.map((dept, i) => (
+            <div
+              key={i}
+              className="flex flex-col justify-between bg-[#F7F7F7] w-full sm:w-[48%] md:w-[30%] p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-400 ease-in-out min-h-[350px]"
+            >
+              <div>
+                <div className="w-20 h-20 mx-auto bg-[#A3272A] rounded-full mb-6 flex items-center justify-center text-white text-3xl font-bold select-none">
+                  {dept.title.charAt(0)}
+                </div>
+                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">{dept.title}</h3>
+                <p className="text-gray-700 mb-6">{dept.desc}</p>
+              </div>
+              <Link
+                to={`/${dept.title.toLowerCase().replace(/\s+/g, '')}`}
+                className="inline-block px-6 py-2 border-2 border-[#A3272A] rounded-full text-[#A3272A] font-medium hover:bg-[#A3272A] hover:text-white transition"
+              >
+                Read more
+              </Link>
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-14">
+          <Link
+            to="/department"
+            className="inline-block px-8 py-3 border-2 border-[#A3272A] rounded-full text-[#A3272A] font-semibold hover:bg-[#A3272A] hover:text-white transition"
+          >
+            See all Departments
+          </Link>
+        </div>
+      </section>
 
+      {/* Highlights Section */}
+      <section className="flex flex-wrap gap-6 px-4 sm:px-6 py-14 justify-center bg-[#A3272A] text-white">
+        <div className="w-full md:w-[30%]">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Why Choose Ghurki?</h2>
+          <p className="leading-relaxed text-base sm:text-lg">
+            Our goal is more than just providing free medical care. From CyberKnife to Pakistan’s 1st Spine Center
+            and our renowned Dialysis services, we deliver hope through innovation. Your support makes it possible,
+            like the comfortable Musafir Khana for patients’ attendants.
+          </p>
+        </div>
 
+        <div className="w-full md:w-[30%]">
+          <img
+            src={hospital}
+            alt="Exterior view of Ghurki Hospital"
+            className="w-full max-h-72 object-cover rounded-2xl shadow-xl border-4 border-white"
+          />
+        </div>
 
+        <div className="w-full md:w-[30%] space-y-6">
+          {highlights.map((item, i) => (
+            <div
+              key={i}
+              className="group border-l-4 border-white pl-5 hover:bg-white hover:text-[#A3272A] rounded-lg transition duration-300 p-4 shadow-md hover:shadow-xl"
+            >
+              <p className="font-extrabold text-lg">{item.title}</p>
+              <p className="text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
+      {/* Testimonials */}
+      <section className="bg-gray-50 py-20 px-4">
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#A3272A] text-center mb-8">People Say About Us</h2>
+        <hr className="w-24 border-t-4 border-[#A3272A] mx-auto mb-12" />
+
+        <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-4 sm:px-0 scrollbar-thin scrollbar-thumb-[#A3272A] scrollbar-track-gray-200">
+          {testimonials.map((person, index) => (
+            <div
+              key={index}
+              className="min-w-[90%] sm:min-w-[300px] bg-white rounded-xl shadow-lg p-6 snap-center flex-shrink-0 hover:shadow-2xl transition duration-300"
+            >
+              <div className="flex items-center gap-4 mb-5">
+                <img
+                  src={person.image}
+                  alt={person.name}
+                  onError={(e) => (e.target.src = "/default-avatar.jpg")}
+                  className="w-16 h-16 rounded-full object-cover border-4 border-[#A3272A]"
+                />
+                <div>
+                  <p className="font-semibold text-lg text-gray-900">{person.name}</p>
+                </div>
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed">{person.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </>
   );
 };
